@@ -34,11 +34,11 @@ export default function ProfileButton() {
           </Link>
         </PopoverClose>
         <PopoverClose asChild>
-          <div
+          <button
             onClick={signOut}
-            className="hover:bg-muted cursor-pointer px-4 py-3 text-sm">
+            className="hover:bg-muted cursor-pointer px-4 py-3 text-left text-sm">
             로그아웃
-          </div>
+          </button>
         </PopoverClose>
       </PopoverContent>
     </Popover>
