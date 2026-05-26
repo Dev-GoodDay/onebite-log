@@ -88,7 +88,7 @@ export default function PostEditorModal() {
         description:
           postEditorModal.type === 'CREATE'
             ? '이 화면에서 나가면 작성중이던 내용이 사라집니다.'
-            : '이 화면에서 나가면 작성중으로 내용으로 수정되지 않습니다',
+            : '이 화면에서 나가면 수정한 내용이 반영되지 않습니다',
         onPositive: () => {
           postEditorModal.actions.close()
         }
