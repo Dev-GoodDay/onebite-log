@@ -1,75 +1,74 @@
-# React + TypeScript + Vite
+# DailyPic
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite 기반으로 제작한 일상 기록 서비스입니다.
+기존 학습 프로젝트를 기반으로 UI와 기능을 개선하고,  
+상태 관리 및 데이터 처리 구조를 리팩토링하여 포트폴리오용으로 재구성했습니다.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 프로젝트 소개
 
-## React Compiler
+해당 프로젝트는 인프런의  
+:contentReference[oaicite:0]{index=0}  
+를 참고하여 제작하였습니다.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+기존 학습 프로젝트를 그대로 사용하는 대신,  
+실제 서비스 형태를 고려하여 기능과 구조를 직접 개선했습니다.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## 개선 사항
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 서비스 로고 및 브랜딩 수정
+- 일부 기능 오류 수정 및 안정성 개선
+- 접근성(Accessibility) 개선
+- 댓글 기능 개선
+  - 기존 단순 링크 이동 방식 수정
+  - 댓글 작성 시 댓글 수가 실시간으로 반영되도록 변경
+- Supabase 기반 데이터 관리 구조 적용
+- Zustand를 활용한 전역 상태 관리 적용
+- TanStack Query를 활용한 서버 상태 관리 및 캐싱 처리
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 로그인 / 회원가입
+- 게시글 CRUD
+- 댓글 기능
+- 실시간 댓글 수 반영
+- 반응형 UI
+- 다크모드
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Frontend
+
+- React
+- JavaScript
+- React Router
+- CSS Modules
+
+### State Management
+
+- Zustand
+- TanStack Query
+
+### Backend / Database
+
+- Supabase
+
+---
+
+## Preview
+
+---
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
 ```
