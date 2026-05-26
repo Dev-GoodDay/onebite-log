@@ -2,6 +2,7 @@ import { Link, Outlet } from 'react-router'
 import logo from '@/assets/logo_dailypic.svg'
 import ProfileButton from './header/profile-button'
 import ThemeButton from './header/theme-button'
+import GithubButton from './github-button'
 
 export default function GlobalLayout() {
   return (
@@ -14,7 +15,6 @@ export default function GlobalLayout() {
               DailyPic
             </Link>
           </h1>
-
           <div className="flex items-center gap-5">
             <ThemeButton />
             <ProfileButton />
@@ -27,6 +27,7 @@ export default function GlobalLayout() {
       <footer className="text-muted-foreground border-t py-10 text-center">
         @Copyright © 2026 DailyPic
       </footer>
+      <GithubButton />
     </div>
   )
 }
