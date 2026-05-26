@@ -33,7 +33,7 @@ export default function ForgetPasswordPage() {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <article className="flex flex-col gap-8">
       <div>
         <div className="flex-xl font-bold">비밀번호를 잊으셨나요?</div>
         <div className="text-muted-foreground">
@@ -46,6 +46,7 @@ export default function ForgetPasswordPage() {
         onChange={e => setEmail(e.target.value)}
         className="py-6"
         placeholder="example@abc.com"
+        aria-label="이메일"
       />
       <Button
         disabled={isRequestPasswordResetEmailPending}
@@ -53,6 +54,6 @@ export default function ForgetPasswordPage() {
         className="w-full">
         인증 메일 요청하기
       </Button>
-    </div>
+    </article>
   )
 }

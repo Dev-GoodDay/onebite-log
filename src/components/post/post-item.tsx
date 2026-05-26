@@ -36,13 +36,15 @@ export default function PostItem({
   const isMine = post.author_id === userId
 
   return (
-    <div
+    <article
       className={`flex flex-col gap-4 pb-8 ${type === 'FEED' && 'border-b'}`}>
       {/* 1. 유저 정보, 수정/삭제 버튼 */}
       <div className="flex justify-between">
         {/* 1-1. 유저 정보 */}
         <div className="flex items-start gap-4">
-          <Link to={`profile/${post.author_id}`}>
+          <Link
+            to={`/profile/${post.author_id}`}
+            aria-label="${post.author.nickname}의 프로필 페이지 바로가기">
             <img
               src={post.author.avatar_url || defaultAvatar}
               alt={`${post.author.nickname}의 프로필 이미지`}
@@ -71,7 +73,7 @@ export default function PostItem({
       </div>
 
       {/* 2. 컨텐츠, 이미지 캐러셀 */}
-      <div className="flex cursor-pointer flex-col gap-5">
+      <div className="flex flex-col gap-5">
         {/* 2-1. 컨텐츠 */}
         {type === 'FEED' ? (
           <Link to={`/post/${post.id}`}>
@@ -90,7 +92,7 @@ export default function PostItem({
           <CarouselContent>
             {post.image_urls?.map((url, index) => (
               <CarouselItem className={`basis-3/5`} key={index}>
-                <div className="overflow-hidden rounded-xl">
+                <div className="h-full overflow-hidden rounded-xl">
                   <img
                     src={url}
                     alt=""
@@ -113,15 +115,14 @@ export default function PostItem({
         />
 
         {/* 3-2. 댓글 버튼 */}
-        {type === 'FEED' && (
-          <Link to={`/post/${post.id}`}>
-            <div className="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-xl border p-2 px-4 text-sm">
-              <MessageCircle className="h-4 w-4" />
-              <span>댓글 달기</span>
-            </div>
-          </Link>
-        )}
+        <Link to={`/post/${post.id}`}>
+          <div className="hover:bg-muted flex cursor-pointer items-center gap-2 rounded-xl border p-2 px-4 text-sm">
+            <MessageCircle className="h-4 w-4" />
+            <span>{post.comment_count}</span>
+            <span className="sr-only">댓글 달기</span>
+          </div>
+        </Link>
       </div>
-    </div>
+    </article>
   )
 }

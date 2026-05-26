@@ -27,8 +27,8 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="text-xl font-bold">회원가입</div>
+    <article className="flex flex-col gap-8">
+      <h2 className="text-xl font-bold">회원가입</h2>
       <div className="flex flex-col gap-2">
         <Input
           disabled={isSignUpPending}
@@ -37,6 +37,7 @@ export default function SignUpPage() {
           className="py-6"
           type="email"
           placeholder="example@abc.com"
+          aria-label="이메일"
         />
         <Input
           disabled={isSignUpPending}
@@ -45,6 +46,7 @@ export default function SignUpPage() {
           className="py-6"
           type="password"
           placeholder="password"
+          aria-label="비밀번호"
         />
       </div>
       <div>
@@ -60,6 +62,6 @@ export default function SignUpPage() {
           이미 계정이 있다면? 로그인
         </Link>
       </div>
-    </div>
+    </article>
   )
 }

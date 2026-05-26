@@ -27,10 +27,10 @@ export default function ProfileButton() {
       </PopoverTrigger>
       <PopoverContent className="flex w-40 flex-col p-0">
         <PopoverClose asChild>
-          <Link to={`/profile/${session.user.id}`}>
-            <div className="hover:bg-muted cursor-pointer px-4 py-3 text-sm">
-              프로필
-            </div>
+          <Link
+            to={`/profile/${session.user.id}`}
+            className="hover:bg-muted cursor-pointer px-4 py-3 text-sm">
+            프로필
           </Link>
         </PopoverClose>
         <PopoverClose asChild>

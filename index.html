@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo_dailypic.svg" />
@@ -16,7 +16,7 @@
           ? JSON.parse(localStorage.getItem('ThemeStore'))
           : null
 
-        const theme = themeStore.state.theme
+        const theme = themeStore?.state.theme
 
         const htmlTag = document.documentElement
         htmlTag.classList.remove('dark', 'light')

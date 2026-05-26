@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import { Textarea } from '../ui/textarea'
 import { useCreateComment } from '@/hooks/mutations/comment/use_create-comment'
-import { toast } from 'sonner'
 import { useUpdateComment } from '@/hooks/mutations/comment/use-update-comment'
+import { toast } from 'sonner'
 
 type CreateMode = {
   type: 'CREATE'
@@ -87,11 +87,12 @@ export default function CommentEditor(props: Props) {
   const isPending = isCreateCommentPending || isUpdateCommentPending
 
   return (
-    <div className="flex flex-col gap-2">
+    <section className="flex flex-col gap-2">
       <Textarea
         disabled={isPending}
         value={content}
         onChange={e => setContent(e.target.value)}
+        aria-label="댓글 입력"
       />
       <div className="flex justify-end gap-2">
         {props.type === 'EDIT' ||
@@ -107,6 +108,6 @@ export default function CommentEditor(props: Props) {
           작성
         </Button>
       </div>
-    </div>
+    </section>
   )
 }

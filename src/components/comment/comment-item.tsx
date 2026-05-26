@@ -48,17 +48,17 @@ export default function CommentItem(props: NestedComment) {
   const isOverTwoLevels = props.parent_comment_id !== props.root_comment_id
 
   return (
-    <div
+    <article
       className={`flex flex-col gap-8 pb-5 ${isRootComment ? 'border-b' : 'ml-6'}`}>
       <div className="flex items-start gap-4">
-        <Link to={'#'}>
-          <div className="flex h-full flex-col">
-            <img
-              className="h-10 w-10 rounded-full object-cover"
-              src={props.author.avatar_url || defaultAvatar}
-              alt=""
-            />
-          </div>
+        <Link
+          to={`/profile/${props.author.id}`}
+          className="flex h-full flex-col">
+          <img
+            className="h-10 w-10 rounded-full object-cover"
+            src={props.author.avatar_url || defaultAvatar}
+            alt=""
+          />
         </Link>
         <div className="flex w-full flex-col gap-2">
           <div className="font-bold">{props.author.nickname}</div>
@@ -81,28 +81,28 @@ export default function CommentItem(props: NestedComment) {
           )}
           <div className="text-muted-foreground flex justify-between text-sm">
             <div className="flex items-center gap-2">
-              <div
+              <button
                 onClick={toggleIsReply}
                 className="cursor-pointer hover:underline">
                 댓글
-              </div>
-              <div className="bg-border h-3 w-0.5"></div>
-              <div>{formatTimeAgo(props.created_at)}</div>
+              </button>
+              <span className="bg-border h-3 w-0.5"></span>
+              <span>{formatTimeAgo(props.created_at)}</span>
             </div>
             <div className="flex items-center gap-2">
               {isMine && (
                 <>
-                  <div
+                  <button
                     onClick={toggleIsEditing}
                     className="cursor-pointer hover:underline">
                     수정
-                  </div>
-                  <div className="bg-border h-3 w-0.5"></div>
-                  <div
+                  </button>
+                  <span className="bg-border h-3 w-0.5"></span>
+                  <button
                     onClick={handleDeleteClick}
                     className="cursor-pointer hover:underline">
                     삭제
-                  </div>
+                  </button>
                 </>
               )}
             </div>
@@ -121,6 +121,6 @@ export default function CommentItem(props: NestedComment) {
       {props.children.map(comment => (
         <CommentItem key={comment.id} {...comment} />
       ))}
-    </div>
+    </article>
   )
 }

@@ -1,5 +1,10 @@
 import { useSession } from '@/store/session'
-import { Dialog, DialogContent, DialogTitle } from '../ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription
+} from '../ui/dialog'
 import { useProfileData } from '@/hooks/queries/use-profile-data'
 import Fallback from '../fallback'
 import Loader from '../loader'
@@ -88,12 +93,17 @@ export default function ProfileEditorModal() {
     <Dialog open={isOpen} onOpenChange={close}>
       <DialogContent className="flex flex-col gap-5">
         <DialogTitle>프로필 수정하기</DialogTitle>
+        <DialogDescription className="sr-only">
+          프로필 이미지, 닉네임, 소개 내용을 수정할 수 있습니다.
+        </DialogDescription>
         {fetchProfileError && <Fallback />}
         {isFetchProfilePending && <Loader />}
         {!fetchProfileError && !isFetchProfilePending && (
           <>
             <div className="flex flex-col gap-2">
-              <div className="text-muted-foreground">프로필 이미지</div>
+              <label htmlFor="profileImage" className="text-muted-foreground">
+                프로필 이미지
+              </label>
               <input
                 disabled={isUpdateProfilePending}
                 ref={fileInputRef}
@@ -101,6 +111,7 @@ export default function ProfileEditorModal() {
                 type="file"
                 accept="image/*"
                 className="hidden"
+                id="profileImage"
               />
               <img
                 onClick={() => {
@@ -115,20 +126,28 @@ export default function ProfileEditorModal() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="text-muted-foreground">닉네임</div>
+              <label
+                htmlFor="profileNickname"
+                className="text-muted-foreground">
+                닉네임
+              </label>
               <Input
                 disabled={isUpdateProfilePending}
                 value={nickname}
                 onChange={e => setNickname(e.target.value)}
+                id="profileNickname"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <div className="text-muted-foreground">소개</div>
+              <label htmlFor="profileBid" className="text-muted-foreground">
+                소개
+              </label>
               <Input
                 disabled={isUpdateProfilePending}
                 value={bio}
                 onChange={e => setBio(e.target.value)}
+                id="profileBid"
               />
             </div>
 

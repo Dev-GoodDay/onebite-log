@@ -32,7 +32,7 @@ export default function ResetPasswordPage() {
     updatePassword(password)
   }
   return (
-    <div className="flex flex-col gap-8">
+    <article className="flex flex-col gap-8">
       <div>
         <div className="flex-xl font-bold">비밀번호 재설정하기</div>
         <div className="text-muted-foreground">
@@ -46,6 +46,7 @@ export default function ResetPasswordPage() {
         type="password"
         className="py-6"
         placeholder="password"
+        aria-label="비밀번호"
       />
       <Button
         disabled={isUpdatePasswordPending}
@@ -53,6 +54,6 @@ export default function ResetPasswordPage() {
         className="w-full">
         비밀번호 변경하기
       </Button>
-    </div>
+    </article>
   )
 }

@@ -5,13 +5,14 @@ export default function CreatePostButton() {
   const openCreatePostModal = useOpenCreatePostModal()
 
   return (
-    <div
+    <button
       onClick={openCreatePostModal}
-      className="bg-muted text-muted-foreground cursor-pointer rounded-xl px-6 py-4">
+      className="bg-muted text-muted-foreground cursor-pointer rounded-xl px-6 py-4"
+      aria-label="포스트 작성창 열기">
       <div className="flex items-center justify-between">
-        <div>나누고 싶은 이야기가 있나요?</div>
+        <span>나누고 싶은 이야기가 있나요?</span>
         <PlusCircleIcon className="h-5 w-5" />
       </div>
-    </div>
+    </button>
   )
 }

@@ -20,7 +20,8 @@ export default function PostFeed({ authorId }: { authorId?: string }) {
   if (isPending) return <Loader />
 
   return (
-    <div className="flex flex-col gap-10">
+    <section className="flex flex-col gap-10">
+      <h3 className="sr-only">포스트 리스트</h3>
       {data.pages.map(page =>
         page.map(postId => (
           <PostItem key={postId} postId={postId} type={'FEED'} />
@@ -29,6 +30,6 @@ export default function PostFeed({ authorId }: { authorId?: string }) {
       {isFetchingNextPage && <Loader />}
 
       <div ref={ref}></div>
-    </div>
+    </section>
   )
 }

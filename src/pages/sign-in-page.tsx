@@ -46,8 +46,8 @@ export default function SignInPage() {
   const isPending = isSignInWithPasswordPending || isSignInWithOAuthPending
 
   return (
-    <div className="flex flex-col gap-8">
-      <div className="text-xl font-bold">로그인</div>
+    <article className="flex flex-col gap-8">
+      <h2 className="text-xl font-bold">로그인</h2>
       <div className="flex flex-col gap-2">
         <Input
           disabled={isPending}
@@ -56,6 +56,7 @@ export default function SignInPage() {
           className="py-6"
           type="email"
           placeholder="example@abc.com"
+          aria-label="이메일"
         />
         <Input
           disabled={isPending}
@@ -64,6 +65,7 @@ export default function SignInPage() {
           className="py-6"
           type="password"
           placeholder="password"
+          aria-label="비밀번호"
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -92,6 +94,6 @@ export default function SignInPage() {
           비밀번호를 잊으셨나요?
         </Link>
       </div>
-    </div>
+    </article>
   )
 }

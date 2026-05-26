@@ -34,6 +34,14 @@ export async function createComment({
     .single()
 
   if (error) throw error
+
+  // 댓글 수 증가
+  const { error: countError } = await supabase.rpc('increment_comment_count', {
+    p_post_id: postId
+  })
+
+  if (countError) throw countError
+
   return data
 }
 
@@ -64,5 +72,13 @@ export async function deleteComment(id: number) {
     .single()
 
   if (error) throw error
+
+  // 댓글 수 감소
+  const { error: countError } = await supabase.rpc('decrement_comment_count', {
+    p_post_id: data.post_id
+  })
+
+  if (countError) throw countError
+
   return data
 }

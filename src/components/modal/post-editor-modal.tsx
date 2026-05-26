@@ -1,6 +1,11 @@
 import { usePostEditorModal } from '@/store/post-editor-modal'
 import { Button } from '../ui/button'
-import { Dialog, DialogContent, DialogTitle } from '../ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription
+} from '../ui/dialog'
 import { ImageIcon, XIcon } from 'lucide-react'
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import useCreatePost from '@/hooks/mutations/post/use-create-post'
@@ -72,7 +77,26 @@ export default function PostEditorModal() {
   }, [postEditorModal.isOpen])
 
   const handleCloseModal = () => {
-    if (content !== '' || images.length !== 0) {
+    if (!postEditorModal.isOpen) return
+
+    if (
+      (postEditorModal.type === 'CREATE' && content !== '') ||
+      (postEditorModal.type === 'EDIT' && content !== postEditorModal.content)
+    ) {
+      openAlertModal({
+        title: '게시글 작성이 마무리 되지 않았습니다',
+        description:
+          postEditorModal.type === 'CREATE'
+            ? '이 화면에서 나가면 작성중이던 내용이 사라집니다.'
+            : '이 화면에서 나가면 작성중으로 내용으로 수정되지 않습니다',
+        onPositive: () => {
+          postEditorModal.actions.close()
+        }
+      })
+
+      return
+    }
+    /* if (content !== '' || images.length !== 0) {
       openAlertModal({
         title: '게시글 작성이 마무리 되지 않았습니다',
         description: '이 화면에서 나가면 작성중이던 내용이 사라집니다.',
@@ -82,11 +106,11 @@ export default function PostEditorModal() {
       })
 
       return
-    }
+    } */
     postEditorModal.actions.close()
   }
 
-  const handelSavePostClick = () => {
+  const handleSavePostClick = () => {
     if (content.trim() === '') return
     if (!postEditorModal.isOpen) return
 
@@ -97,11 +121,14 @@ export default function PostEditorModal() {
         userId: session!.user.id
       })
     } else {
-      if (content === postEditorModal.content) return
-      updatePost({
-        id: postEditorModal.postId,
-        content: content
-      })
+      if (content === postEditorModal.content) {
+        postEditorModal.actions.close()
+      } else {
+        updatePost({
+          id: postEditorModal.postId,
+          content: content
+        })
+      }
     }
   }
 
@@ -134,6 +161,9 @@ export default function PostEditorModal() {
     <Dialog open={postEditorModal.isOpen} onOpenChange={handleCloseModal}>
       <DialogContent className="max-h-[90vh]">
         <DialogTitle>포스트 작성</DialogTitle>
+        <DialogDescription className="sr-only">
+          포스트 작성 중 나가면 작성중이던 내용이 사라집니다.
+        </DialogDescription>
         <textarea
           disabled={isPending}
           ref={textareaRef}
@@ -141,6 +171,7 @@ export default function PostEditorModal() {
           onChange={e => setContent(e.target.value)}
           className="max-h-125 min-h-25 focus:outline-none"
           placeholder="무슨 일이 있었나요?"
+          aria-label="포스트 내용 입력"
         />
         <input
           onChange={handleSelectImages}
@@ -203,7 +234,7 @@ export default function PostEditorModal() {
         )}
         <Button
           disabled={isPending}
-          onClick={handelSavePostClick}
+          onClick={handleSavePostClick}
           className="cursor-pointer">
           저장
         </Button>

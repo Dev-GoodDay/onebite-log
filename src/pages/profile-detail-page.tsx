@@ -17,6 +17,7 @@ export default function ProfileDetailPage() {
 
   return (
     <div className="flex flex-col gap-10">
+      <h2 className="sr-only">프로필 상세페이지</h2>
       <ProfileInfo userId={userId} />
       <div className="border-b"></div>
       <PostFeed authorId={userId} />

@@ -46,10 +46,11 @@ export default function CommentList({ postId }: { postId: number }) {
   const nestedComments = toNestedComments(comments)
 
   return (
-    <div className="flex flex-col gap-5">
+    <section className="flex flex-col gap-5">
+      <h3 className="sr-only">댓글 리스트</h3>
       {nestedComments.map(comment => (
         <CommentItem key={comment.id} {...comment} />
       ))}
-    </div>
+    </section>
   )
 }

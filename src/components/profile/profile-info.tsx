@@ -20,7 +20,7 @@ export default function ProfileInfo({ userId }: { userId: string }) {
   const isMine = session?.user.id === userId
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5">
+    <section className="flex flex-col items-center justify-center gap-5">
       <img
         src={profile.avatar_url || defaultAvatar}
         alt=""
@@ -31,6 +31,6 @@ export default function ProfileInfo({ userId }: { userId: string }) {
         <div className="text-muted-foreground">{profile.bio}</div>
       </div>
       {isMine && <EditProfileButton />}
-    </div>
+    </section>
   )
 }
